@@ -2,16 +2,9 @@
 import { z } from "zod";
 
 export const leadSchema = z.object({
-  name: z.string().optional(),
   email: z.string().email("올바른 이메일을 입력해주세요"),
-  phone: z
-    .string()
-    .regex(/^01[0-9]-?\d{3,4}-?\d{4}$/, "올바른 전화번호를 입력해주세요")
-    .optional()
-    .or(z.literal("")),
-  hasDog: z.boolean(),
-  preRegisterIntent: z.enum(["yes", "thinking"]),
-  comment: z.string().max(500).optional(),
+  wantsLaunchAlert: z.boolean().optional(),
+  wantsUserTest: z.boolean().optional(),
   consentPrivacy: z.literal(true, {
     message: "개인정보 수집에 동의해주세요",
   }),

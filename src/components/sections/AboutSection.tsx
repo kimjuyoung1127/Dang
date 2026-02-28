@@ -17,9 +17,22 @@ export function AboutSection() {
             <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground ko-heading ko-tight max-w-[16ch] md:max-w-[20ch]">
               {COPY.about.title}
             </h2>
-            <p className="mt-5 text-foreground-muted ko-body ko-relaxed whitespace-pre-line max-w-full">
-              {COPY.about.description}
-            </p>
+            <div className="mt-5 text-foreground-muted ko-body ko-relaxed max-w-full">
+              {COPY.about.description.split("\n\n").map((paragraph, i) => (
+                <p key={i} className="mb-4 whitespace-pre-line">
+                  {paragraph.split(/(\*\*.*?\*\*)/).map((part, j) => {
+                    if (part.startsWith("**") && part.endsWith("**")) {
+                      return (
+                        <strong key={j} className="font-bold text-foreground">
+                          {part.slice(2, -2)}
+                        </strong>
+                      );
+                    }
+                    return part;
+                  })}
+                </p>
+              ))}
+            </div>
           </ScrollReveal>
 
           {/* Right: Image */}

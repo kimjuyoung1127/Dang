@@ -31,14 +31,21 @@ export function ModesSection() {
                   : "bg-card border-border hover:border-primary-light hover:shadow-lg"
               )}
             >
-              <h3
-                className={cn(
-                  "font-display text-2xl font-bold",
-                  mode.accent ? "text-white" : "text-foreground"
-                )}
-              >
-                {mode.name}
-              </h3>
+              <div className="flex flex-col items-center">
+                <span className="text-sm font-semibold text-primary mb-2 px-3 py-1 bg-primary/10 rounded-full">
+                  {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+                  {/* @ts-ignore - step added dynamically via copy mapping */}
+                  {mode.step}
+                </span>
+                <h3
+                  className={cn(
+                    "font-display text-2xl font-bold",
+                    mode.accent ? "text-white" : "text-foreground"
+                  )}
+                >
+                  {mode.name}
+                </h3>
+              </div>
               <p
                 className={cn(
                   "mt-2 text-base font-medium ko-body",
@@ -79,14 +86,33 @@ export function ModesSection() {
                 </p>
               </div>
 
-              <p
+              <div
                 className={cn(
                   "mt-6 text-sm ko-body text-left whitespace-pre-line leading-[1.8]",
                   mode.accent ? "text-white/80" : "text-foreground-muted"
                 )}
               >
-                {mode.description}
-              </p>
+                {mode.description.split("\n\n").map((paragraph, i) => (
+                  <p key={i} className="mb-4">
+                    {paragraph.split(/(\*\*.*?\*\*)/).map((part, j) => {
+                      if (part.startsWith("**") && part.endsWith("**")) {
+                        return (
+                          <strong
+                            key={j}
+                            className={cn(
+                              "font-bold",
+                              mode.accent ? "text-white" : "text-foreground"
+                            )}
+                          >
+                            {part.slice(2, -2)}
+                          </strong>
+                        );
+                      }
+                      return part;
+                    })}
+                  </p>
+                ))}
+              </div>
             </div>
           </StaggerItem>
         ))}

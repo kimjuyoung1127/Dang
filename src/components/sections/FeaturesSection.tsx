@@ -16,15 +16,15 @@ export function FeaturesSection() {
   return (
     <SectionWrapper id={SECTION_IDS.FEATURES}>
       <ScrollReveal>
-        <div className="text-center mx-auto max-w-[20ch] md:max-w-[24ch]">
-          <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground ko-heading ko-tight">
-            {COPY.features.title}
-          </h2>
+        <div className="text-center mx-auto md:max-w-4xl px-4">
           {COPY.features.subtitle && (
-            <p className="mt-4 text-lg font-medium text-foreground-muted ko-body">
+            <p className="mb-4 text-base font-semibold text-primary">
               {COPY.features.subtitle}
             </p>
           )}
+          <h2 className="font-display text-2xl md:text-3xl lg:text-4xl font-bold text-foreground ko-heading ko-tight">
+            {COPY.features.title}
+          </h2>
         </div>
       </ScrollReveal>
 

@@ -4,33 +4,29 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { motion } from "framer-motion";
+
 import { useRouter } from "next/navigation";
 import { leadSchema, type LeadFormData } from "@/lib/validation";
 import { Button } from "@/components/ui/Button";
-import { cn } from "@/lib/utils";
+
 
 export function LeadForm() {
   const router = useRouter();
   const [submitting, setSubmitting] = useState(false);
-  const [showExit, setShowExit] = useState(false);
 
   const {
     register,
     handleSubmit,
-    watch,
     setValue,
     formState: { errors },
   } = useForm<LeadFormData>({
     resolver: zodResolver(leadSchema),
     defaultValues: {
-      hasDog: true,
-      preRegisterIntent: "yes",
+      wantsLaunchAlert: false,
+      wantsUserTest: false,
       consentPrivacy: false as unknown as true,
     },
   });
-
-  const hasDog = watch("hasDog");
 
   // Listen for prefill-email from Hero
   useEffect(() => {
@@ -43,10 +39,6 @@ export function LeadForm() {
   }, [setValue]);
 
   const onSubmit = async (data: LeadFormData) => {
-    if (!data.hasDog) {
-      setShowExit(true);
-      return;
-    }
 
     setSubmitting(true);
     try {
@@ -66,23 +58,7 @@ export function LeadForm() {
     }
   };
 
-  if (showExit) {
-    return (
-      <motion.div
-        initial={{ opacity: 0, y: 12 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="rounded-2xl bg-white/5 border border-white/10 p-8 text-center"
-      >
-        <p className="text-xl font-display font-bold text-white">
-          관심 가져주셔서 감사합니다!
-        </p>
-        <p className="mt-3 text-white/60 text-sm ko-body ko-relaxed max-w-[34ch] mx-auto">
-          현재 댕개팅은 반려견 보호자를 위한 서비스이며, 추후 더 넓은 서비스로
-          찾아뵙겠습니다.
-        </p>
-      </motion.div>
-    );
-  }
+
 
   const inputCn =
     "w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder:text-white/30 focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary/50 transition-all text-sm";
@@ -106,78 +82,29 @@ export function LeadForm() {
         {errors.email && <p className={errorCn}>{errors.email.message}</p>}
       </div>
 
-      {/* Name + Phone */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div>
-          <label className={labelCn}>이름 (선택)</label>
+      {/* Checkboxes for opt-ins */}
+      <div className="space-y-4">
+        <label className="flex items-center gap-3 cursor-pointer group">
           <input
-            type="text"
-            placeholder="홍길동"
-            {...register("name")}
-            className={inputCn}
+            type="checkbox"
+            {...register("wantsLaunchAlert")}
+            className="w-5 h-5 rounded border-white/20 bg-white/5 text-primary focus:ring-primary/30"
           />
-        </div>
-        <div>
-          <label className={labelCn}>전화번호 (선택)</label>
+          <span className="text-sm text-white/80 group-hover:text-white transition-colors ko-body">
+            출시 소식 가장 먼저 받아보기
+          </span>
+        </label>
+
+        <label className="flex items-center gap-3 cursor-pointer group">
           <input
-            type="tel"
-            placeholder="010-1234-5678"
-            {...register("phone")}
-            className={inputCn}
+            type="checkbox"
+            {...register("wantsUserTest")}
+            className="w-5 h-5 rounded border-white/20 bg-white/5 text-primary focus:ring-primary/30"
           />
-          {errors.phone && <p className={errorCn}>{errors.phone.message}</p>}
-        </div>
-      </div>
-
-      {/* hasDog */}
-      <div>
-        <label className={labelCn}>현재 반려견을 키우고 계신가요? *</label>
-        <div className="flex gap-3">
-          {[
-            { value: true, label: "네" },
-            { value: false, label: "아니요" },
-          ].map((opt) => (
-            <button
-              key={String(opt.value)}
-              type="button"
-              onClick={() => {
-                setValue("hasDog", opt.value);
-                if (!opt.value) setShowExit(true);
-              }}
-              className={cn(
-                "flex-1 py-2.5 rounded-xl text-sm font-medium transition-all border",
-                hasDog === opt.value
-                  ? "bg-primary text-white border-primary"
-                  : "bg-white/5 text-white/60 border-white/10 hover:border-white/20"
-              )}
-            >
-              {opt.label}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      {/* Pre-register intent */}
-      <div>
-        <label className={labelCn}>참여 의향</label>
-        <select
-          {...register("preRegisterIntent")}
-          className={cn(inputCn, "appearance-none")}
-        >
-          <option value="yes" className="text-gray-900 bg-white">네, 참여할래요</option>
-          <option value="thinking" className="text-gray-900 bg-white">조금 더 고민해볼게요</option>
-        </select>
-      </div>
-
-      {/* Comment */}
-      <div>
-        <label className={labelCn}>하고 싶은 말 (선택)</label>
-        <textarea
-          placeholder="궁금한 점이나 기대하는 기능을 알려주세요"
-          rows={3}
-          {...register("comment")}
-          className={cn(inputCn, "resize-none")}
-        />
+          <span className="text-sm text-white/80 group-hover:text-white transition-colors ko-body">
+            유저 테스트도 참여해보고 싶어요
+          </span>
+        </label>
       </div>
 
       {/* Consents */}
@@ -201,10 +128,10 @@ export function LeadForm() {
       <Button
         type="submit"
         size="lg"
-        className="w-full"
+        className="w-full font-bold text-base"
         disabled={submitting}
       >
-        {submitting ? "제출 중..." : "사전 등록 신청하기"}
+        {submitting ? "제출 중..." : "👉 가장 먼저 경험하기"}
       </Button>
     </form>
   );
