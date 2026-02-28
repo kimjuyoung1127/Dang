@@ -13,11 +13,11 @@ export function AboutSection() {
       <SectionWrapper id={SECTION_IDS.ABOUT}>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left: Text */}
-          <ScrollReveal>
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground ko-heading ko-tight max-w-[16ch] md:max-w-[20ch]">
+          <ScrollReveal className="flex flex-col items-center text-center md:items-center md:text-center">
+            <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground ko-heading ko-tight max-w-[16ch] md:max-w-[20ch] mx-auto">
               {COPY.about.title}
             </h2>
-            <div className="mt-5 text-foreground-muted ko-body ko-relaxed max-w-full">
+            <div className="mt-5 text-foreground-muted ko-body ko-relaxed max-w-full mx-auto">
               {COPY.about.description.split("\n\n").map((paragraph, i) => (
                 <p key={i} className="mb-4 whitespace-pre-line">
                   {paragraph.split(/(\*\*.*?\*\*)/).map((part, j) => {

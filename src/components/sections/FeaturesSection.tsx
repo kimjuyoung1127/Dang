@@ -60,16 +60,16 @@ export function FeaturesSection() {
             className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center"
           >
             {/* Left: Description */}
-            <div>
-              <h3 className="font-display text-2xl font-bold text-foreground ko-heading ko-tight max-w-[20ch]">
+            <div className="flex flex-col items-center text-center">
+              <h3 className="font-display text-2xl font-bold text-foreground ko-heading ko-tight max-w-[20ch] mx-auto">
                 {tab.title}
               </h3>
-              <p className="mt-3 text-foreground-muted ko-body ko-relaxed max-w-[36ch] md:max-w-[46ch]">
+              <p className="mt-3 text-foreground-muted ko-body ko-relaxed max-w-[36ch] md:max-w-[46ch] mx-auto whitespace-pre-line">
                 {tab.description}
               </p>
-              <ul className="mt-6 space-y-3">
+              <ul className="mt-6 space-y-3 flex flex-col items-center">
                 {tab.points.map((point, idx) => (
-                  <li key={idx} className="flex items-start gap-3">
+                  <li key={idx} className="flex items-center justify-center gap-3">
                     <span className="mt-0.5 flex-shrink-0 w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center">
                       <svg
                         className="w-3 h-3 text-primary"

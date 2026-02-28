@@ -88,7 +88,7 @@ export function ModesSection() {
 
               <div
                 className={cn(
-                  "mt-6 text-sm ko-body text-left whitespace-pre-line leading-[1.8]",
+                  "mt-6 text-sm ko-body text-center whitespace-pre-line leading-[1.8]",
                   mode.accent ? "text-white/80" : "text-foreground-muted"
                 )}
               >
