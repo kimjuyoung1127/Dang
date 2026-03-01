@@ -17,13 +17,13 @@ export function AboutSection() {
             <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground ko-heading ko-tight max-w-[16ch] md:max-w-[20ch] mx-auto">
               {COPY.about.title}
             </h2>
-            <div className="mt-5 text-foreground-muted ko-body ko-relaxed max-w-full mx-auto">
+            <div className="mt-10 text-foreground-muted ko-body ko-relaxed max-w-full mx-auto">
               {COPY.about.description.split("\n\n").map((paragraph, i) => {
                 const isHeadingQuestion = i === 0;
                 return (
                   <p
                     key={i}
-                    className={`mb-4 whitespace-pre-line ${isHeadingQuestion ? "text-xl md:text-2xl font-bold text-foreground mb-6" : ""
+                    className={`mb-4 whitespace-pre-line ${isHeadingQuestion ? "text-xl md:text-2xl font-bold text-foreground mb-12" : ""
                       }`}
                   >
                     {paragraph.split(/(\*\*.*?\*\*)/).map((part, j) => {
@@ -34,7 +34,7 @@ export function AboutSection() {
                         return (
                           <strong
                             key={j}
-                            className={`font-bold text-foreground ${isEmphasis ? "block text-lg md:text-xl mt-4" : ""
+                            className={`font-bold text-foreground ${isEmphasis ? "block text-lg md:text-xl my-10" : ""
                               }`}
                           >
                             {content}
