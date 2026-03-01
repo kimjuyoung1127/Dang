@@ -227,7 +227,7 @@ export const COPY = {
     ],
   },
   footer: {
-    email: "dangdating.team@gmail.com",
+    email: "k9y1a3@gmail.com",
     representative: "대표 김윤아",
   },
 } as const;
