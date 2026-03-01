@@ -18,20 +18,34 @@ export function AboutSection() {
               {COPY.about.title}
             </h2>
             <div className="mt-5 text-foreground-muted ko-body ko-relaxed max-w-full mx-auto">
-              {COPY.about.description.split("\n\n").map((paragraph, i) => (
-                <p key={i} className="mb-4 whitespace-pre-line">
-                  {paragraph.split(/(\*\*.*?\*\*)/).map((part, j) => {
-                    if (part.startsWith("**") && part.endsWith("**")) {
-                      return (
-                        <strong key={j} className="font-bold text-foreground">
-                          {part.slice(2, -2)}
-                        </strong>
-                      );
-                    }
-                    return part;
-                  })}
-                </p>
-              ))}
+              {COPY.about.description.split("\n\n").map((paragraph, i) => {
+                const isHeadingQuestion = i === 0;
+                return (
+                  <p
+                    key={i}
+                    className={`mb-4 whitespace-pre-line ${isHeadingQuestion ? "text-xl md:text-2xl font-bold text-foreground mb-6" : ""
+                      }`}
+                  >
+                    {paragraph.split(/(\*\*.*?\*\*)/).map((part, j) => {
+                      if (part.startsWith("**") && part.endsWith("**")) {
+                        const content = part.slice(2, -2);
+                        const isEmphasis = content.includes("댕개팅은") || content.includes("시작했습니다");
+
+                        return (
+                          <strong
+                            key={j}
+                            className={`font-bold text-foreground ${isEmphasis ? "block text-lg md:text-xl mt-4" : ""
+                              }`}
+                          >
+                            {content}
+                          </strong>
+                        );
+                      }
+                      return part;
+                    })}
+                  </p>
+                );
+              })}
             </div>
           </ScrollReveal>
 

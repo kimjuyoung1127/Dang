@@ -72,6 +72,9 @@ export function LeadForm() {
     >
       {/* Email */}
       <div>
+        <p className="text-[13px] text-white/50 font-normal mb-2 leading-relaxed">
+          서울 및 수도권 보호자를 중심으로 사전 등록을 받고 있습니다.
+        </p>
         <label className={labelCn}>이메일 *</label>
         <input
           type="email"
