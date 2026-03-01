@@ -31,7 +31,7 @@ export async function POST(req: Request) {
       try {
         await resend.emails.send({
           from: "DangDating <onboarding@resend.dev>", // 등록된 도메인이 없을 경우 기본 제공 주소 사용
-          to: ["k9y1a3@gmail.com"],
+          to: ["dangdating.team@gmail.com"],
           subject: "🎉 새로운 사전 예약 신청이 도착했습니다!",
           html: `
             <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #eee; border-radius: 10px;">
