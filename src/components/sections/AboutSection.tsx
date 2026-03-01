@@ -34,7 +34,7 @@ export function AboutSection() {
                         return (
                           <strong
                             key={j}
-                            className={`font-bold text-foreground ${isEmphasis ? "block text-lg md:text-xl my-5" : ""
+                            className={`font-bold text-foreground ${isEmphasis ? "block text-lg md:text-xl my-0" : ""
                               }`}
                           >
                             {content}
