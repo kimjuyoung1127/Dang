@@ -9,7 +9,7 @@ export function Footer() {
           <div>
             <div className="mb-2">
               <img
-                src="/Frame%201984078378.svg"
+                src="/logo-white.svg"
                 alt="댕개팅"
                 className="h-8 w-auto object-contain"
               />
