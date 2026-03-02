@@ -25,12 +25,12 @@ export function AboutSection() {
                 return (
                   <p
                     key={i}
-                    className={`mb-6 md:mb-8 last:mb-0 whitespace-pre-line ${isHeadingQuestion
-                      ? "text-xl md:text-2xl font-bold text-foreground mb-8 md:mb-10"
+                    className={`mb-4 md:mb-6 last:mb-0 whitespace-pre-line ${isHeadingQuestion
+                      ? "text-lg md:text-xl font-bold text-foreground mb-8 md:mb-10"
                       : ""
-                      } ${isMainEmphasis ? "leading-[1.1]" : ""}`}
+                      } ${isMainEmphasis ? "leading-[1.2]" : ""}`}
                   >
-                    {paragraph.split(/(\*\*.*?\*\*)/).map((part, j) => {
+                    {paragraph.split(/(\*\*.*?\*\*)/).filter(p => !isMainEmphasis || p.trim() !== "").map((part, j) => {
                       if (part.startsWith("**") && part.endsWith("**")) {
                         const content = part.slice(2, -2);
                         const isFirstLine = content.includes("댕개팅은");
@@ -41,7 +41,7 @@ export function AboutSection() {
                           <strong
                             key={j}
                             className={`font-bold text-foreground ${isEmphasis ? "block text-lg md:text-xl" : ""
-                              } ${isFirstLine ? "mt-6 md:mt-10 mb-0" : ""} ${isSecondLine ? "mt-0 mb-6 md:mt-10" : ""
+                              } ${isFirstLine ? "mt-6 md:mt-8 mb-0" : ""} ${isSecondLine ? "mt-0 mb-6 md:mt-8" : ""
                               }`}
                           >
                             {content}
