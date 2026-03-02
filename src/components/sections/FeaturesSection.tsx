@@ -92,14 +92,14 @@ export function FeaturesSection() {
             </div>
 
             <div className="flex justify-center w-full">
-              <div className="relative p-1 bg-card rounded-[2.5rem] border border-border shadow-2xl w-full max-w-[280px] md:max-w-[320px] overflow-hidden">
+              <div className="relative p-1 bg-card rounded-[2.5rem] border border-border shadow-2xl w-full max-w-[280px] md:max-w-[280px] overflow-hidden">
                 <ImagePlaceholder
                   src={tab.image}
                   aspectRatio="9/16"
                   objectFit="contain"
                   icon="phone"
                   label={`${tab.label} 화면`}
-                  className="w-full border-0 rounded-[2.2rem]"
+                  className="w-full border-0 rounded-[2.5rem]"
                 />
               </div>
             </div>
