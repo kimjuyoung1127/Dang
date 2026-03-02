@@ -23,7 +23,7 @@ export function PhoneMockup({ className, label, src, cropTop = false }: PhoneMoc
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-28 h-6 bg-foreground/90 rounded-b-2xl z-10" />
 
         {/* Screen */}
-        <div className="relative bg-card rounded-[2rem] overflow-hidden">
+        <div className="relative bg-white rounded-[2rem] overflow-hidden pb-10">
           <ImagePlaceholder
             src={src}
             aspectRatio="9/19.5"
