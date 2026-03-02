@@ -17,26 +17,32 @@ export function AboutSection() {
             <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground ko-heading ko-tight max-w-[16ch] md:max-w-[20ch] mx-auto">
               {COPY.about.title}
             </h2>
-            <div className="mt-10 text-foreground-muted ko-body ko-relaxed max-w-full mx-auto">
+            <div className="mt-8 md:mt-10 text-foreground-muted ko-body ko-relaxed max-w-full mx-auto">
               {COPY.about.description.split("\n\n").map((paragraph, i) => {
                 const isHeadingQuestion = i === 0;
+                const isMainEmphasis = paragraph.includes("댕개팅은");
+
                 return (
                   <p
                     key={i}
-                    className={`mb-4 whitespace-pre-line ${isHeadingQuestion ? "text-xl md:text-2xl font-bold text-foreground mb-12" : ""
-                      }`}
+                    className={`mb-6 md:mb-8 last:mb-0 whitespace-pre-line ${isHeadingQuestion
+                        ? "text-xl md:text-2xl font-bold text-foreground mb-8 md:mb-10"
+                        : ""
+                      } ${isMainEmphasis ? "leading-[1.25]" : ""}`}
                   >
                     {paragraph.split(/(\*\*.*?\*\*)/).map((part, j) => {
                       if (part.startsWith("**") && part.endsWith("**")) {
                         const content = part.slice(2, -2);
                         const isFirstLine = content.includes("댕개팅은");
-                        const isSecondLine = content.includes("시작했습니다");
+                        const isSecondLine = content.includes("출발했습니다");
                         const isEmphasis = isFirstLine || isSecondLine;
 
                         return (
                           <strong
                             key={j}
-                            className={`font-bold text-foreground ${isEmphasis ? "block text-lg md:text-xl" : ""} ${isFirstLine ? "mt-20 mb-0" : ""} ${isSecondLine ? "mt-0 mb-20" : ""}`}
+                            className={`font-bold text-foreground ${isEmphasis ? "block text-lg md:text-xl" : ""
+                              } ${isFirstLine ? "mt-10 md:mt-14 mb-0.5" : ""} ${isSecondLine ? "mt-0.5 mb-10 md:mt-14" : ""
+                              }`}
                           >
                             {content}
                           </strong>
