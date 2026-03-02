@@ -1,4 +1,5 @@
 // 푸터 — 문의 이메일(대표 김윤아), 네비게이션 링크
+import Image from "next/image";
 import { COPY, NAV_LINKS } from "@/lib/constants";
 
 export function Footer() {
@@ -8,9 +9,11 @@ export function Footer() {
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
           <div>
             <div className="mb-2">
-              <img
+              <Image
                 src="/logo-white.svg"
                 alt="댕개팅"
+                width={80}
+                height={32}
                 className="h-8 w-auto object-contain"
               />
             </div>

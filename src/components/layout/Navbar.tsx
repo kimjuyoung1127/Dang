@@ -3,6 +3,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { NAV_LINKS, SECTION_IDS } from "@/lib/constants";
 import { Button } from "@/components/ui/Button";
@@ -32,10 +33,13 @@ export function Navbar() {
           href={`#${SECTION_IDS.HOME}`}
           className="flex items-center group"
         >
-          <img
+          <Image
             src="/Frame%201984078378.svg"
             alt="댕개팅"
+            width={80}
+            height={32}
             className="h-8 w-auto object-contain transition-transform group-hover:scale-105"
+            priority
           />
         </a>
 

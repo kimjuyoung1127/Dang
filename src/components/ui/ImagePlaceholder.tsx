@@ -1,4 +1,5 @@
 // 이미지 플레이스홀더 — src prop 추가 시 실제 이미지로 자동 교체
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 interface ImagePlaceholderProps {
@@ -22,16 +23,20 @@ export function ImagePlaceholder({
 }: ImagePlaceholderProps) {
   if (src) {
     return (
-      <img
-        src={src}
-        alt={alt}
-        className={cn(
-          "w-full h-auto rounded-2xl",
-          objectFit === "cover" ? "object-cover" : "object-contain bg-card/50",
-          className
-        )}
+      <div
+        className={cn("relative w-full overflow-hidden", className)}
         style={{ aspectRatio }}
-      />
+      >
+        <Image
+          src={src}
+          alt={alt}
+          fill
+          sizes="(max-w-768px) 100vw, (max-w-1200px) 50vw, 33vw"
+          className={cn(
+            objectFit === "cover" ? "object-cover" : "object-contain bg-card/50"
+          )}
+        />
+      </div>
     );
   }
 

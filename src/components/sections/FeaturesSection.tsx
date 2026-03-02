@@ -2,7 +2,7 @@
 // Features 섹션 — 4탭 UI (인증/매칭/댕로그/후기), AnimatePresence 전환
 
 import { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, PanInfo } from "framer-motion";
 import { COPY, SECTION_IDS } from "@/lib/constants";
 import { SectionWrapper } from "@/components/ui/SectionWrapper";
 import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
@@ -19,7 +19,7 @@ export function FeaturesSection() {
     setActiveTab(newIndex);
   };
 
-  const handleDragEnd = (_: any, info: any) => {
+  const handleDragEnd = (_: unknown, info: PanInfo) => {
     const swipeThreshold = 50;
     if (info.offset.x < -swipeThreshold) {
       // Swiped left -> move to next tab
