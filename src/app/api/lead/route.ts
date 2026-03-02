@@ -43,7 +43,10 @@ export async function POST(req: Request) {
 
     // 1. Supabase에 데이터 저장 (Upsert)
     try {
-      console.log("Attempting Supabase upsert into 'leads' table...");
+      // 한국 시간(KST)으로 저장하기 위해 오프셋(+09:00)을 직접 명시
+      const kstTime = new Date(new Date().getTime() + 9 * 60 * 60 * 1000).toISOString().replace("Z", "+09:00");
+
+      console.log("Attempting Supabase upsert into 'leads' table with KST time:", kstTime);
       const { data: upsertData, error: supabaseError } = await supabase
         .from("leads")
         .upsert(
@@ -51,7 +54,7 @@ export async function POST(req: Request) {
             email,
             pre_register: wantsLaunchAlert,
             user_test: wantsUserTest,
-            created_at: new Date().toISOString(),
+            created_at: kstTime,
           },
           { onConflict: "email" }
         )
