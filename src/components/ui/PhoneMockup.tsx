@@ -6,9 +6,10 @@ interface PhoneMockupProps {
   className?: string;
   label?: string;
   src?: string;
+  cropTop?: boolean;
 }
 
-export function PhoneMockup({ className, label, src }: PhoneMockupProps) {
+export function PhoneMockup({ className, label, src, cropTop = false }: PhoneMockupProps) {
   return (
     <div
       className={cn(
@@ -28,7 +29,7 @@ export function PhoneMockup({ className, label, src }: PhoneMockupProps) {
             aspectRatio="9/19.5"
             icon="phone"
             label={label || "앱 메인 화면"}
-            className="rounded-none border-0"
+            className={cn("rounded-none border-0", cropTop && "-mt-9 scale-[1.05] origin-top")}
           />
         </div>
       </div>

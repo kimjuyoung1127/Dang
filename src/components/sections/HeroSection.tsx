@@ -154,20 +154,14 @@ export function HeroSection() {
             </motion.div>
           </motion.div>
 
-          {/* Right: Illustration/Image */}
+          {/* Right: Phone Mockup */}
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3, ease: [0.25, 0.1, 0.25, 1] as [number, number, number, number] }}
             className="flex justify-center lg:justify-end"
           >
-            <div className="relative mx-auto w-[280px] md:w-[320px] lg:w-[380px] xl:w-[420px]">
-              <img
-                src="/main.png"
-                alt="앱 메인 화면"
-                className="w-full h-auto drop-shadow-[0_20px_50px_rgba(0,0,0,0.15)] hover:scale-[1.02] transition-transform duration-500"
-              />
-            </div>
+            <PhoneMockup label="앱 메인 화면" src="/main.png" cropTop={true} />
           </motion.div>
         </div>
       </div>
